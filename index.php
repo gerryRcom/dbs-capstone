@@ -1,18 +1,38 @@
-<html><head><title>Test php</title>
+<html><head><title>Pi-Map Main GUI</title>
 <link rel="stylesheet" type="text/css" href="pi-map.css">
 </head><body>
-</br>
-<p>
-<img src="images/logo_pi-map.png" alt="Pi-Map Logo" title="Pi-Map Logo" style="float:right;width:280px;height:240px;">
-<h2>Welcome to Pi-Map, hover over the controls below for more information and please note the Pi LED screen has two modes which will inform you of the current status:</h2>
-<ul><li>Ready mode where the Pi-Map's current IP address will scroll accross the screen, no commands are running when this is displayed.</li>
-<li>Scan mode, the word 'SCAN' will be displayed on the screen, when in this mode the device is running a scan or processing something.  Once it ends you might have to refresh the page to see the results.</li></ul>
-</br>
-</p>
-    	<a href="command.php?cmd=quickScan"><img src="images/button_quick-network-scan.png" alt="Perform a quick discover scan of the current subnet (fast scan)" title="Perform a quick discovery scan of the current subnet (fast scan)"></a><a href="command.php?cmd=archiveResults"><img src="images/button_archive-results.png" alt="Archive current discovered hosts and clear all content" title="Archive current discovered hosts and clear all content"></a></br>
 
-<h3>Scan Results</h3>
-<div>
+<div class="row">
+
+<div class="column">
+<h2>Welcome to Pi-Map, hover over the controls below for more information and please note the Pi LED screen has two modes which will inform you of the current status:</h2>
+<ul>
+<li>Ready mode where the Pi-Map's current IP address will scroll accross the screen, no commands are running when this is displayed.</li>
+<li>Scan mode, the word 'SCAN' will be displayed on the screen, when in this mode the device is running a scan or processing something.  Once it ends you might have to refresh the page to see the results.</li>
+</ul>
+</div>
+
+<div class="column">
+<img src="images/logo_pi-map.png" alt="Pi-Map Logo" title="Pi-Map Logo" style="width:280px;height:240px;">
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="column">
+<a href="command.php?cmd=quickScan"><img src="images/button_network-discovery-scan.png" alt="Perform a quick discover scan of the current subnet (fast scan)" title="Perform a quick discovery scan of the current subnet (fast scan)"></a>
+<a href="command.php?cmd=scanDiscovered"><img src="images/button_scan-all-discovered.png" alt="Perform a scan of all discovered devices below" title="Perform a scan of all discovered devices below"></a>
+</div>
+
+<div class="column">
+<a href="command.php?cmd=archiveResults"><img src="images/button_archive-results.png" alt="Archive current discovered hosts and clear all content" title="Archive current discovered hosts and clear all content"></a>
+<a href="command.php?cmd=exportResults"><img src="images/button_export-results.png" alt="Export current discovered hosts to .csv for download" title="Export current discovered hosts to .csv for download"></a>
+</div>
+</div>
+
+<h2>Scan Results</h2>
+<p>
 
 <?php
 	if (file_exists('initialScan.xml')) {
@@ -33,5 +53,5 @@
     exit('No previous scan results to display');
 }
 ?>
-</div>
+</p>
 </body></html>

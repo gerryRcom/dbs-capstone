@@ -1,0 +1,27 @@
+body {
+	font-family: "Courier New", Courier, monospace;
+	font-size: small;
+}
+
+p {
+        border: 1px solid gray;
+	padding: 5px;
+}
+
+a {
+        text-decoration: none;
+	color: #008CBA;
+}
+
+/*Taken from w3 schools https://www.w3schools.com/howto/howto_css_two_columns.asp */
+.column {
+		float: left;
+	        width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+		content: "";
+	        display: table;
+		clear: both;
+}
