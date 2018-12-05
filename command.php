@@ -14,6 +14,26 @@ else if($_REQUEST['cmd'] == 'archiveResults')
 		echo "Archiving previous results, please wait, task will run in approx ".$secondCountdown." seconds</br>";
 		echo "<a href=\"index.php\">Return to main GUI</a>";
 	}
+else if($_REQUEST['cmd'] == 'scanDiscovered')
+	{
+		#shell_exec('touch /var/www/html/commandqueue/scanDiscovered.cmd');
+		echo "Running scan on all discoverd hosts, scan will begin in approx ".$secondCountdown." seconds</br>";
+		echo "Note if there are currently no discovered hosts the scan will return nothing</br></br>";
+		echo "<a href=\"index.php\"><img src=\"images/button_home-page.png\" alt=\"Return to main GUI\" title=\"Return to main GUI\"></a>";
+		if (file_exists('initialScan.xml'))
+		{
+			$xml = simplexml_load_file('initialScan.xml');
+			foreach ($xml->host as $discoveredHost)
+				{
+					shell_exec('touch /var/www/html/commandqueue/'.(string)$discoveredHost->address[0]['addr'].'.cmd');
+				}
+		}
+		else
+		{
+			echo "Error, no previous scan results to display";
+		}
+	}
+
 else
 	{
 		shell_exec('touch /var/www/html/commandqueue/'.$_GET['cmd'].'.cmd');
