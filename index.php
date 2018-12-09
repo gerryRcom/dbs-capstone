@@ -31,24 +31,34 @@
 </div>
 </div>
 
+<div class="row">
+
+<div class="column">.
+</div>
+<div class="column">
+<a href="command.php?cmd=shutdownDevice"><img src="/images/button_shutdown.png" alt="Shutdown Pi-Map device" title="Shutdown Pi-Map device"></a>
+</div>
+</div>
+
+
 <h2>Scan Results</h2>
 <p>
 
 <?php
-	if (file_exists('initialScan.xml')) {
-    	$xml = simplexml_load_file('initialScan.xml');
-	foreach ($xml->host as $discoveredHost){
-		
-		print_r("Dicovered device IP: ".(string)$discoveredHost->address[0]['addr']);
-		print_r("</br>");
-		print_r("Discovered device MAC: ".(string)$discoveredHost->address[1]['addr']." MAC Vendor: ".(string)$discoveredHost->address[1]['vendor']);
-		print_r("</br>");
-		print_r("<a href=\"command.php?cmd=".(string)$discoveredHost->address[0]['addr']."\"><img src=\"images/button_full-device-scan.png\" alt=\"Perform a full scan of this device\" title=\"Perform a full scan of this device\"></a>");
-		if (file_exists((string)$discoveredHost->address[0]['addr'].".xml")){
-			print_r("<a href=\"device.php?cmd=".(string)$discoveredHost->address[0]['addr']."\"><img src=\"images/button_device-scan-results.png\" alt=\"View full device scan results\" title=\"View full device scan results\"></a>");
-		}
-		print_r('</br></br>');
-	}
+        if (file_exists('initialScan.xml')) {
+        $xml = simplexml_load_file('initialScan.xml');
+        foreach ($xml->host as $discoveredHost){
+
+                print_r("Dicovered device IP: ".(string)$discoveredHost->address[0]['addr']);
+                print_r("</br>");
+                print_r("Discovered device MAC: ".(string)$discoveredHost->address[1]['addr']." MAC Vendor: ".(string)$discoveredHost->address[1]['vendor']);
+                print_r("</br>");
+                print_r("<a href=\"command.php?cmd=".(string)$discoveredHost->address[0]['addr']."\"><img src=\"images/button_full-device-scan.png\" alt=\"Perform a full scan of this device\" title=\"Perform a full scan of this device\"></a>");
+                if (file_exists((string)$discoveredHost->address[0]['addr'].".xml")){
+                        print_r("<a href=\"device.php?cmd=".(string)$discoveredHost->address[0]['addr']."\"><img src=\"images/button_device-scan-results.png\" alt=\"View full device scan results\" title=\"View full device scan results\"></a>");
+                }
+                print_r('</br></br>');
+        }
 } else {
     exit('No previous scan results to display');
 }

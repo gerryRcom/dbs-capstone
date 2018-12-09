@@ -36,10 +36,6 @@ else if($_REQUEST['cmd'] == 'scanDiscovered')
 
 else if($_REQUEST['cmd'] == 'exportResults')
         {
-                #shell_exec('touch /var/www/html/commandqueue/scanDiscovered.cmd');
-                #echo "Exporting discoverd hosts to .csv, export will begin in approx ".$secondCountdown." seconds</br>";
-                #echo "Note if there are currently no discovered hosts the export will be empty</br></br>";
-                #echo "<a href=\"index.php\"><img src=\"images/button_home-page.png\" alt=\"Return to main GUI\" title=\"Return to main GUI\"></a>";
                 if (file_exists('initialScan.xml'))
                 {
                         echo "Exporting discovered devices to .csv</br>";
@@ -58,6 +54,12 @@ else if($_REQUEST['cmd'] == 'exportResults')
                 }
                 echo "</br><a href=\"index.php\"><img src=\"images\button_home-page.png\" alt=\"Return to main GUI\" title=\"Return to main GUI\"></a>";
         }
+
+else if($_REQUEST['cmd'] == 'shutdownDevice')
+{
+        shell_exec('touch /var/www/html/commandqueue/shutdownDevice.cmd');
+        echo "Device will shutdown in approx ".$secondCountdown." seconds, please wait.</br>";
+}
 
 else
         {

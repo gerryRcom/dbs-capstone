@@ -20,13 +20,13 @@ if [ -e /var/www/html/commandqueue/quickScan.cmd ]
                 python /home/pi/pi-map/stopLED.py
                 rm /var/www/html/commandqueue/running/quickScan.cmd
 
-#Run a scan on all discovered hosts, checking if any hosts have been discovered first.
-#elif [ -e /var/www/html/commandqueue/scanDiscovered.cmd ]
-        #then
-                #pkill python
-                #python /home/pi/pi-map/startLED.py
-                #mv /var/www/html/commandqueue/scanDiscovered.cmd /var/www/html/commandqueue/running/
-                #rm /var/www/html/commandqueue/running/default.cmd
+#Shutdown the Pi-Map device
+elif [ -e /var/www/html/commandqueue/shutdownDevice.cmd ]
+        then
+                pkill python
+                rm /var/www/html/commandqueue/shutdownDevice.cmd
+                rm /var/www/html/commandqueue/running/default.cmd
+                sudo shutdown now
 
 
 #Archive all the previous results (.xml files) in order to clear the system and prepare for a new scan
