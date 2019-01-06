@@ -47,6 +47,7 @@
 <p>
 
 <?php
+	//Parses and displays discovered device details if initial scan has been complete and .xml file exists
 	if (file_exists('initialScan.xml')) {
 	$xml = simplexml_load_file('initialScan.xml');
 	$deviceCount = 0;
@@ -63,6 +64,7 @@
 		}
 		print_r('</br></br>');
 	}
+	//Print a tally of devices at end of list
 	print_r('<h3>Total device count: '.(string)$deviceCount)."</h3>";
 } else {
     exit('No previous scan results to display');
