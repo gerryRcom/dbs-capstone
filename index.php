@@ -7,10 +7,10 @@
 <div class="column">
 <h2>Welcome to Pi-Map, hover over the controls below for more information and please note the Pi LED screen has two modes which will inform you of the current status:</h2>
 <ul>
-<li>Ready mode where the Pi-Map's current IP address will scroll accross the screen, no commands are running when this is displayed.</li>
-<li><img src="images/screen_ip.jpg" alt="Image of LED display in ready mode" title="Image of LED display in ready mode"></li>
-<li>Scan mode, the word 'SCAN' will be displayed on the screen, when in this mode the device is running a scan or processing something.  Once it ends you might have to refresh the page to see the results.</li>
-<li><img src="images/screen_scan.jpg" alt="Image of LED display in Scan mode" title="Image of LED display in Scan mode"></li>
+<li>Ready mode where the Pi-Map's current IP address will scroll accross the screen, no commands are running when this is displayed.</br>
+<img src="images/screen_ip.jpg" alt="Image of LED display in ready mode" title="Image of LED display in ready mode"></li>
+<li>Scan mode, the word 'SCAN' will be displayed on the screen, when in this mode the device is running a scan or processing something.  Once it ends you might have to refresh the page to see the results.</br>
+<img src="images/screen_scan.jpg" alt="Image of LED display in Scan mode" title="Image of LED display in Scan mode"></li>
 </ul>
 </div>
 
@@ -48,9 +48,11 @@
 
 <?php
 	if (file_exists('initialScan.xml')) {
-    	$xml = simplexml_load_file('initialScan.xml');
+	$xml = simplexml_load_file('initialScan.xml');
+	$deviceCount = 0;
 	foreach ($xml->host as $discoveredHost){
 		
+		$deviceCount = $deviceCount+1;
 		print_r("Dicovered device IP: ".(string)$discoveredHost->address[0]['addr']);
 		print_r("</br>");
 		print_r("Discovered device MAC: ".(string)$discoveredHost->address[1]['addr']." MAC Vendor: ".(string)$discoveredHost->address[1]['vendor']);
@@ -61,6 +63,7 @@
 		}
 		print_r('</br></br>');
 	}
+	print_r('<h3>Total device count: '.(string)$deviceCount)."</h3>";
 } else {
     exit('No previous scan results to display');
 }
