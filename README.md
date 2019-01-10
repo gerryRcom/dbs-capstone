@@ -1,4 +1,4 @@
-# dbs-capstone #
+# dbs-capstone # https://github.com/gerryRcom/dbs-capstone
 
 ###Hardware###
 #-Model 3 B+
